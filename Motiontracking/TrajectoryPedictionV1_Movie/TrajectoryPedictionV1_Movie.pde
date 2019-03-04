@@ -71,6 +71,7 @@ void draw() {
   if (count > 0) {
     avgX = avgX / count;
     avgY = avgY / count;
+    println(avgX);
     // Draw a circle at the tracked pixel
     fill(255);
     strokeWeight(4.0);

@@ -115,6 +115,8 @@ public void mousePressed() {
 public void getCoordinates(){
 
 count=0;
+locX =0;
+locY =0;
 
 
   for (int x = 0; x < video.width; x++ ) {
