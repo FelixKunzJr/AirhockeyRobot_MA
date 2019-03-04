@@ -24,8 +24,8 @@ float vectY;
 float prevX;
 float prevY;
 
-float avgX = 0;
-float avgY = 0;
+float avgX ;
+float avgY ;
 
 int count = 0;
 int i = 0;
@@ -56,22 +56,51 @@ void draw() {
   image(video, 0, 0, width, height);
  //threshold = map(mouseX, 0, width, 0, 100);
 
-
-
+/*
+if(avgX>0){
 if(i < 2){
 getCoordinates();
-coordinates[i][0]= avgX;
+coordinates[i][0]= coordinates[i][0]+ avgX;
 coordinates[i][1]= avgY;
+println(avgX);
 
 
 i++;
 }
+}
 
- v1 = new PVector(coordinates[0][0]-coordinates[1][0], coordinates[0][1]-coordinates[1][1]);
+ellipse(coordinates[0][0],coordinates[0][1],25,25);
 
+ v1 = new PVector(coordinates[1][0]-coordinates[0][0], coordinates[1][1]-coordinates[0][1]);
+
+*/
+
+if(avgX>0){
+if(i < 5){
+getCoordinates();
+if(i < 1){
+coordinates[1][0]=  avgX;
+coordinates[1][1]=  avgX;
+}
+
+
+
+coordinates[0][0]= coordinates[0][0]+ avgX;
+coordinates[0][1]= coordinates[0][1]+ avgY;
+println(avgX);
+println(avgY);
+
+
+i++;
+}
+}
+
+ellipse(coordinates[0][0],coordinates[0][1],250,250);
+
+ v1 = new PVector(391.0-254,827.0-902);
 
 PVector v2 = PVector.mult(v1, 100);
-line(coordinates[0][0],coordinates[0][1],coordinates[0][0]+v2.x,coordinates[0][1]+v2.y );
+line(254,902,254+v2.x,902+v2.y );
 
   // Begin loop to walk through every pixel
 
@@ -153,7 +182,6 @@ if(count > 0){
     avgY = locY / count;
   }
     // Draw a circle at the tracked pixel
-    println(avgX);
 
 
 
