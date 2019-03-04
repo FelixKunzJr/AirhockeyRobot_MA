@@ -46,10 +46,13 @@ float avgX = 0;
 float avgY = 0;
 
 int count = 0;
-int count2 = 0;
+int i = 0;
 
 int locX;
 int locY;
+
+float[][] coordinates  = new float[2][2];
+//loat coordinates[2][2];
 
 public void setup() {
   
@@ -71,15 +74,28 @@ public void draw() {
   image(video, 0, 0, width, height);
  //threshold = map(mouseX, 0, width, 0, 100);
 
+
+
+if(i < 2){
 getCoordinates();
+coordinates[i][0]= avgX;
+coordinates[i][1]= avgY;
 
 
+i++;
+}
+
+ v1 = new PVector(coordinates[0][0]-coordinates[1][0], coordinates[0][1]-coordinates[1][1]);
 
 
+PVector v2 = PVector.mult(v1, 100);
+line(coordinates[0][0],coordinates[0][1],coordinates[0][0]+v2.x,coordinates[0][1]+v2.y );
 
   // Begin loop to walk through every pixel
 
 
+
+getCoordinates();
 
     fill(255);
     strokeWeight(4.0f);
