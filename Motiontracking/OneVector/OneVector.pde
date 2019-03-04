@@ -18,21 +18,11 @@ Movie video;
 color trackColor;
 float threshold = 100;
 
-float vectX;
-float vectY;
-
-float prevX;
-float prevY;
-
-float avgX ;
-float avgY ;
 
 float[] orig  = new float[2];
 float[] avg5  = new float[2];
 float[] avg  = new float[2];
 float[][] coordinates  = new float[2][2];
-
-
 
 
 int count = 0;
@@ -41,8 +31,9 @@ int i = 0;
 int locX;
 int locY;
 
+int setAccuracy;
 
-//loat coordinates[2][2];
+
 
 void setup() {
   size(1850,1036);
@@ -53,6 +44,7 @@ void setup() {
     video.loop();
 
   trackColor = color(255, 0, 0);
+  setAccuracy = 100;
 }
 
 void movieEvent(Movie video) {
@@ -60,25 +52,23 @@ void movieEvent(Movie video) {
 }
 
 void draw() {
- // video.loadPixels();
+ // video.();
   image(video, 0, 0, width, height);
- //threshold = map(mouseX, 0, width, 0, 100);
 
 
+ getCoordinates();
 
-if(avgX>0){
-if(i < 50){
-getCoordinates();
+if(avg[0]>0){
+if(i < setAccuracy){
+//getCoordinates();
 if(i < 1){
-orig[0]=  avgX;
-orig[1]=  avgY;
+orig[0]=  avg[0];
+orig[1]=  avg[1];
 }
 
-avg[0]=  avgX;
-avg[1]=  avgY;
 
-coordinates[0][0]= coordinates[0][0]+ avgX;
-coordinates[0][1]= coordinates[0][1]+ avgY;
+coordinates[0][0]= coordinates[0][0]+ avg[0];
+coordinates[0][1]= coordinates[0][1]+ avg[1];
 
 
 i++;
@@ -100,7 +90,6 @@ line(orig[0],orig[1],orig[0]+v2.x,orig[1]+v2.y );
 
 
 
-
     fill(255);
     strokeWeight(4.0);
     stroke(1);
@@ -109,17 +98,9 @@ line(orig[0],orig[1],orig[0]+v2.x,orig[1]+v2.y );
 
 }
 
-float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
-  float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
-  return d;
-}
 
-void mousePressed() {
-  // Save color where the mouse is clicked in trackColor variable
-  int loc = mouseX + mouseY*video.width;
-  trackColor = video.pixels[loc];
-  print(trackColor);
-}
+
+
 
 void getCoordinates(){
 
@@ -156,16 +137,15 @@ locY =0;
     }
   }
 
-  // We only consider the color found if its color distance is less than 10.
-  // This threshold of 10 is arbitrary and you can adjust this number depending on how accurate you require the tracking to be.
 
 if(count > 0){
-    avgX = locX / count;
-    avgY = locY / count;
+    avg[0] = locX / count;
+    avg[1] = locY / count;
   }
-    // Draw a circle at the tracked pixel
 
+}
 
-
-
+float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
+  float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
+  return d;
 }
