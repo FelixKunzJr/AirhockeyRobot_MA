@@ -27,6 +27,7 @@ float prevY;
 float avgX = 0;
 float avgY = 0;
 
+int count = 0;
 int count2 = 0;
 
 int locX;
@@ -53,8 +54,7 @@ void draw() {
  //threshold = map(mouseX, 0, width, 0, 100);
 
 getCoordinates();
-print(avgX);
-print(avgY);
+
 
 
 
@@ -96,15 +96,14 @@ void mousePressed() {
 
 void getCoordinates(){
 
-  int count = 0;
+count=0;
 
 
   for (int x = 0; x < video.width; x++ ) {
     for (int y = 0; y < video.height; y++ ) {
       int loc = x + y * video.width;
       // What is current color
-      int locX = 0;
-      int locY = 0;
+
 
 
       color currentColor = video.pixels[loc];
@@ -131,9 +130,12 @@ void getCoordinates(){
   // We only consider the color found if its color distance is less than 10.
   // This threshold of 10 is arbitrary and you can adjust this number depending on how accurate you require the tracking to be.
 
+if(count > 0){
     avgX = locX / count;
     avgY = locY / count;
+  }
     // Draw a circle at the tracked pixel
+    println(avgX);
 
 
 
