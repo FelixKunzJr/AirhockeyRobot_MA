@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class OneVector extends PApplet {
+public class CollisionVector extends PApplet {
 
 /*
 
@@ -169,7 +169,7 @@ public float distSq(float x1, float y1, float z1, float x2, float y2, float z2) 
 }
   public void settings() {  size(1850,1036); }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "OneVector" };
+    String[] appletArgs = new String[] { "CollisionVector" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {

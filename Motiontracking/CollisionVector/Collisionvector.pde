@@ -44,7 +44,7 @@ void setup() {
     video.loop();
 
   trackColor = color(255, 0, 0);
-  setAccuracy = 100;
+  setAccuracy = 50;
 }
 
 void movieEvent(Movie video) {
@@ -79,6 +79,10 @@ avg5[1]= coordinates[0][1]/i;
 
 }
 
+
+
+}
+
 }
 
 ellipse(coordinates[0][0],coordinates[0][1],250,250);
@@ -94,6 +98,10 @@ line(orig[0],orig[1],orig[0]+v2.x,orig[1]+v2.y );
     strokeWeight(4.0);
     stroke(1);
     ellipse(avg[0], avg[1], 24, 24);
+
+
+
+
 
 
 }
