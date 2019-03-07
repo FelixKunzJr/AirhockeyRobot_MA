@@ -1,3 +1,21 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import processing.video.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class CollisionVector extends PApplet {
+
 /*
 
 Ziel: Es wird nur ein vektor per CV-funktion erstellt.
@@ -10,12 +28,12 @@ und da den x wert des vektores zu invertieren.
 
 PVector v1;
 
-import processing.video.*;
+
 
 //Capture video;
 Movie video;
 
-color trackColor;
+int trackColor;
 float threshold = 100;
 
 float topBoundary;
@@ -39,8 +57,8 @@ int setAccuracy;
 
 
 
-void setup() {
-  size(1284,720);
+public void setup() {
+  
 
   video = new Movie(this, "bounceSmall.mov");
 
@@ -57,11 +75,11 @@ void setup() {
 
 }
 
-void movieEvent(Movie video) {
+public void movieEvent(Movie video) {
   video.read();
 }
 
-void draw() {
+public void draw() {
  // video.();
   image(video, 0, 0, width, height);
 
@@ -109,7 +127,7 @@ line(rightBoundary,bottomBoundary,rightBoundary,topBoundary);
 
 
     fill(255);
-    strokeWeight(4.0);
+    strokeWeight(4.0f);
     stroke(1);
     ellipse(avg[0], avg[1], 24, 24);
 
@@ -129,7 +147,7 @@ line(rightBoundary,bottomBoundary,rightBoundary,topBoundary);
 
 
 
-void getCoordinates(){
+public void getCoordinates(){
 
 count=0;
 locX =0;
@@ -143,7 +161,7 @@ locY =0;
 
 
 
-      color currentColor = video.pixels[loc];
+      int currentColor = video.pixels[loc];
       float r1 = red(currentColor);
       float g1 = green(currentColor);
       float b1 = blue(currentColor);
@@ -172,7 +190,17 @@ if(count > 0){
 
 }
 
-float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
+public float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
   float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
   return d;
+}
+  public void settings() {  size(1284,720); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "CollisionVector" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
