@@ -36,9 +36,9 @@ int setAccuracy;
 
 
 void setup() {
-  size(1850,1036);
+  size(1284,720);
 
-  video = new Movie(this, "animation.mov");
+  video = new Movie(this, "bounceSmall.mov");
 
   //video.start();
     video.loop();
@@ -54,6 +54,7 @@ void movieEvent(Movie video) {
 void draw() {
  // video.();
   image(video, 0, 0, width, height);
+
 
 
  getCoordinates();
@@ -83,13 +84,16 @@ avg5[1]= coordinates[0][1]/i;
 
 }
 
-}
+
+
 
 ellipse(coordinates[0][0],coordinates[0][1],250,250);
+
 
 v1 = new PVector(avg5[0]-orig[0],avg5[1]-orig[1]);
 PVector v2 = PVector.mult(v1, 100);
 line(orig[0],orig[1],orig[0]+v2.x,orig[1]+v2.y );
+line(1191,0,1191,700);
 
 
 
@@ -100,6 +104,11 @@ line(orig[0],orig[1],orig[0]+v2.x,orig[1]+v2.y );
     ellipse(avg[0], avg[1], 24, 24);
 
 
+/*  print(avg[0]);
+    print(" ");
+    print(avg[1]);
+    println(";");
+*/
 
 
 
