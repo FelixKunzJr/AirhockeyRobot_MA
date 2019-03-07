@@ -121,7 +121,7 @@ ellipse(intersection[0], intersection[1], 24, 24);
     strokeWeight(4.0);
     stroke(1);
     ellipse(avg[0], avg[1], 24, 24);
-
+ellipse(intersection[0], intersection[1], 24, 24);
 
 /*  print(avg[0]);
     print(" ");
