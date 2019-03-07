@@ -26,6 +26,7 @@ float leftBoundary;
 float[] orig  = new float[2];
 float[] avg5  = new float[2];
 float[] avg  = new float[2];
+float[] intersection = new float[2];
 float[][] coordinates  = new float[2][2];
 
 
@@ -34,6 +35,7 @@ int i = 0;
 
 int locX;
 int locY;
+
 
 int setAccuracy;
 
@@ -105,6 +107,13 @@ PVector v2 = PVector.mult(v1, 100);
 line(orig[0],orig[1],orig[0]+v2.x,orig[1]+v2.y );
 line(rightBoundary,bottomBoundary,rightBoundary,topBoundary);
 
+
+intersection[0]= (((rightBoundary-orig[0])/(v1.x))*v1.y)+orig[1];
+intersection[1]= rightBoundary;
+println(intersection[0]);
+println(intersection[1]);
+
+ellipse(intersection[0], intersection[1], 24, 24);
 
 
 
