@@ -8,7 +8,7 @@ und da den x wert des vektores zu invertieren.
 
 */
 
-PVector v1;
+PVector v1,v2,v3,v4;
 
 import processing.video.*;
 
@@ -17,6 +17,7 @@ Movie video;
 
 color trackColor;
 float threshold = 100;
+int setAccuracy = 30;
 
 float topBoundary;
 float bottomBoundary;
@@ -37,7 +38,7 @@ int locX;
 int locY;
 
 
-int setAccuracy;
+
 
 
 
@@ -51,7 +52,7 @@ void setup() {
 
   trackColor = color(255, 0, 0);
 
-  setAccuracy = 50;
+
   topBoundary= 27;
   bottomBoundary= 907;
   rightBoundary= 1191;
@@ -122,6 +123,13 @@ ellipse(intersection[0], intersection[1], 24, 24);
     stroke(1);
     ellipse(avg[0], avg[1], 24, 24);
 ellipse(intersection[0], intersection[1], 24, 24);
+
+v3 = new PVector((-1*(v1.x)),v1.y);
+println(v3);
+PVector v4 = PVector.mult(v3, 100);
+line(intersection[0],intersection[1],intersection[0]+v4.x,intersection[1]+v4.y );
+
+
 
 /*  print(avg[0]);
     print(" ");
