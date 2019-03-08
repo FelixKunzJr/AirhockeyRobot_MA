@@ -1,3 +1,21 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import processing.video.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Reflection extends PApplet {
+
 /*
 
 Ziel: Reflektiere den Vektor an einer Bande
@@ -6,12 +24,12 @@ Ziel: Reflektiere den Vektor an einer Bande
 
 PVector v1,v2,v3,v4;
 
-import processing.video.*;
+
 
 //Capture video;
 Movie video;
 
-color trackColor;
+int trackColor;
 float threshold = 100;
 int setAccuracy = 30;
 
@@ -26,6 +44,7 @@ float[] avg  = new float[2];
 float[] intersection = new float[2];
 float[][] coordinates  = new float[2][2];
 
+
 int count = 0;
 int i = 0;
 
@@ -37,8 +56,8 @@ int locY;
 
 
 
-void setup() {
-  size(1284,720);
+public void setup() {
+  
 
   video = new Movie(this, "bounceSmall.mov");
 
@@ -55,11 +74,11 @@ void setup() {
 
 }
 
-void movieEvent(Movie video) {
+public void movieEvent(Movie video) {
   video.read();
 }
 
-void draw() {
+public void draw() {
  // video.();
   image(video, 0, 0, width, height);
 
@@ -114,7 +133,7 @@ ellipse(intersection[0], intersection[1], 24, 24);
 
 
     fill(255);
-    strokeWeight(4.0);
+    strokeWeight(4.0f);
     stroke(1);
     ellipse(avg[0], avg[1], 24, 24);
 ellipse(intersection[0], intersection[1], 24, 24);
@@ -141,7 +160,7 @@ line(intersection[1],intersection[0],intersection[1]+v4.x,intersection[0]+v4.y )
 
 
 
-void getCoordinates(){
+public void getCoordinates(){
 
 count=0;
 locX =0;
@@ -155,7 +174,7 @@ locY =0;
 
 
 
-      color currentColor = video.pixels[loc];
+      int currentColor = video.pixels[loc];
       float r1 = red(currentColor);
       float g1 = green(currentColor);
       float b1 = blue(currentColor);
@@ -184,7 +203,17 @@ if(count > 0){
 
 }
 
-float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
+public float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
   float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
   return d;
+}
+  public void settings() {  size(1284,720); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Reflection" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
