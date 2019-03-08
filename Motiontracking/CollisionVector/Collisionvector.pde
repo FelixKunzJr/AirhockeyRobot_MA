@@ -127,7 +127,7 @@ ellipse(intersection[0], intersection[1], 24, 24);
 v3 = new PVector((-1*(v1.x)),v1.y);
 println(v3);
 PVector v4 = PVector.mult(v3, 100);
-line(intersection[0],intersection[1],intersection[0]+v4.x,intersection[1]+v4.y );
+line(intersection[1],intersection[0],intersection[1]+v4.x,intersection[0]+v4.y );
 
 
 
