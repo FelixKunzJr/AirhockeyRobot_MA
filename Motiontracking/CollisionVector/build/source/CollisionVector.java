@@ -4,6 +4,7 @@ import processing.event.*;
 import processing.opengl.*; 
 
 import processing.video.*; 
+import java.util.*; 
 
 import java.util.HashMap; 
 import java.util.ArrayList; 
@@ -25,17 +26,21 @@ PVector v1, v2, v3, v4;
 
 
 
+
 //Capture video;
 Movie video;
 
 int trackColor;
-float threshold = 100;
+float threshold = 50;
 int setAccuracy = 20;
 
 float topBoundary;
 float bottomBoundary;
 float rightBoundary;
 float leftBoundary;
+
+Date d;
+
 
 float interceptionLine;
 
@@ -86,9 +91,12 @@ public void draw() {
   image(video, 0, 0, width, height);
 
 
+long current=d.getTime()/
+
+Date d = new Date();
+println(d.getTime()); 
 
   getCoordinates();
-
   getInterceptionPoint();
 
 
