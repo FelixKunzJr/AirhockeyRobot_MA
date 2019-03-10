@@ -33,6 +33,9 @@ float[] avg  = new float[3];
 float[] reflection = new float[3];
 float[] coordinates  = new float[2];
 float[] interceptionPoint = new float[3];
+float[] shootingDirection = new float[2];
+float[] ricochet = new float[2];
+float shootingAngle;
 float ETA;
 
 
@@ -63,7 +66,7 @@ void setup() {
   rightBoundary= 1191;
   leftBoundary= 93;
 
-  goal = topBoundary/2;
+  goal = (rightBoundary-topBoundary)/2;
 
   interceptionLine= 600;
 
@@ -78,10 +81,11 @@ void draw() {
   // video.();
   image(video, 0, 0, width, height);
 
-
-
-
-
+line(leftBoundary,topBoundary,rightBoundary,topBoundary); //draw top boarder
+line(leftBoundary,bottomBoundary,rightBoundary,bottomBoundary); //draw bottom boarder
+line(leftBoundary,topBoundary,leftBoundary,bottomBoundary); //draw left boarder
+line(rightBoundary,topBoundary,rightBoundary,bottomBoundary); //draw right boundary
+ellipse(goal,topBoundary,25,25);
   getCoordinates();
   getInterceptionPoint();
   getShootDirection();
@@ -220,7 +224,14 @@ ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
 }
 
 void getShootDirection(){
-  
+println(interceptionPoint[0]);
+println(goal);
+shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal)/(interceptionLine-topBoundary))));
+ricochet[0]=leftBoundary;
+ricochet[1]=interceptionPoint[0]/tan(shootingAngle);
+ellipse(ricochet[0],ricochet[1],25,25);
+println(shootingAngle);
+
 }
 
 float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
