@@ -223,7 +223,7 @@ ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
 
   v3 = new PVector((-1*(v1.x)), v1.y);
   ETA=ETA+((interceptionLine-reflection[1])/(v3.y))*avg5[2];
-  println(ETA);
+  //println(ETA);
 
 
   //println(v3);
@@ -243,13 +243,22 @@ ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
 }
 
 public void getShootDirection(){
-println(interceptionPoint[0]);
-println(goal);
-shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal)/(interceptionLine-topBoundary))));
+//println(interceptionPoint[0]);
+//println(goal);
+shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal-(2*leftBoundary))/(interceptionLine-topBoundary))));
 ricochet[0]=leftBoundary;
-ricochet[1]=interceptionPoint[0]/tan(shootingAngle);
+ricochet[1]=(interceptionPoint[0]-leftBoundary)/tan(shootingAngle);
 ellipse(ricochet[0],ricochet[1],25,25);
+line(interceptionPoint[0],interceptionPoint[1],ricochet[0],ricochet[1]);
+line(ricochet[0],ricochet[1],goal,topBoundary);
 println(shootingAngle);
+
+float a = degrees(atan((interceptionPoint[0]-leftBoundary)/(bottomBoundary-ricochet[1])));
+println(a);
+
+float b = degrees(atan((goal-leftBoundary)/(ricochet[1]-topBoundary)));
+println(b);
+println(shootingAngle+b);
 
 }
 
