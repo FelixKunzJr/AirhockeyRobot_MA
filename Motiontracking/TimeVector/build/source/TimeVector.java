@@ -48,7 +48,7 @@ float[] orig  = new float[3];
 float[] avg5  = new float[3];
 float[] avg  = new float[3];
 float[] reflection = new float[3];
-float[][] coordinates  = new float[2][2];
+float[] coordinates  = new float[2];
 float[] interceptionPoint = new float[3];
 float ETA;
 
@@ -166,26 +166,26 @@ public void getInterceptionPoint() {
       }
 
 
-      coordinates[0][0]= coordinates[0][0]+ avg[0];
-      coordinates[0][1]= coordinates[0][1]+ avg[1];
-
+      coordinates[0]= coordinates[0]+ avg[0];
+      coordinates[1]= coordinates[1]+ avg[1];
+      println(avg[0]);
 
       i++;
 
-      avg5[0] = coordinates[0][0]/i;
-      avg5[1]= coordinates[0][1]/i;
-      avg5[2]= 15*((millis()-orig[2]))/i;      //Muss mit 15 multipliziert werden... gott weis warum. PRÜFEN!!
-      //println(avg5[2]);
+      avg5[0] = (avg[0]-orig[0])/(i-1);
+      avg5[1]= (avg[1]-orig[1])/(i-1);
+      avg5[2]= ((millis()-orig[2]))/(i);      //Muss mit 15 multipliziert werden... gott weis warum. PRÜFEN!!
+      println(i);
     }
   }
 
 
 
 
-  ellipse(coordinates[0][0], coordinates[0][1], 250, 250);
+  ellipse(coordinates[0], coordinates[1], 250, 250);
 
   //v5 = new PVector(avg[0], avg[1], millis());
-  v1 = new PVector(avg5[0]-orig[0], avg5[1]-orig[1], avg5[2]);
+  v1 = new PVector(avg5[0], avg5[1], avg5[2]);
   println(v1);
 //println(orig[0]);
 ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
