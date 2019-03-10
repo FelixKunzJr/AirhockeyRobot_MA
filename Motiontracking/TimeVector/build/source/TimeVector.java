@@ -101,7 +101,11 @@ public void draw() {
   getInterceptionPoint();
 
 
+if(avg[1]<10+interceptionLine&&avg[1]>interceptionLine-10){
+println("INTERCEPT!!!!");
+println(millis()-orig[2]);
 
+}
 
   /*  print(avg[0]);
    print(" ");
@@ -175,7 +179,6 @@ public void getInterceptionPoint() {
       avg5[0] = (avg[0]-orig[0])/(i-1);
       avg5[1]= (avg[1]-orig[1])/(i-1);
       avg5[2]= ((millis()-orig[2]))/(i);      //Muss mit 15 multipliziert werden... gott weis warum. PRÜFEN!!
-      println(i);
     }
   }
 
@@ -186,10 +189,8 @@ public void getInterceptionPoint() {
 
   //v5 = new PVector(avg[0], avg[1], millis());
   v1 = new PVector(avg5[0], avg5[1], avg5[2]);
-  println(v1);
 //println(orig[0]);
 ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
-println(ETA);
   PVector v2 = PVector.mult(v1, 100);
   line(orig[0], orig[1], orig[0]+v2.x, orig[1]+v2.y );
   line(rightBoundary, bottomBoundary, rightBoundary, topBoundary);
