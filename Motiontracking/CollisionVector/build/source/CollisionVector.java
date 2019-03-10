@@ -80,6 +80,9 @@ public void setup() {
   leftBoundary= 93;
 
   interceptionLine= 600;
+
+  int m = millis();
+  println(m);
 }
 
 public void movieEvent(Movie video) {
@@ -91,10 +94,8 @@ public void draw() {
   image(video, 0, 0, width, height);
 
 
-long current=d.getTime()/
 
-Date d = new Date();
-println(d.getTime()); 
+
 
   getCoordinates();
   getInterceptionPoint();
