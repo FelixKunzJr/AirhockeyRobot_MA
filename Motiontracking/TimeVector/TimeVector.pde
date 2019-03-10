@@ -193,6 +193,10 @@ println(ETA);
   ellipse(reflection[0], reflection[1], 24, 24);
 
   v3 = new PVector((-1*(v1.x)), v1.y);
+  ETA=ETA+((interceptionLine-reflection[1])/(v3.y))*avg5[2];
+  println(ETA);
+
+
   //println(v3);
   PVector v4 = PVector.mult(v3, 100);
   line(reflection[0], reflection[1], reflection[0]+v4.x, reflection[1]+v4.y );
