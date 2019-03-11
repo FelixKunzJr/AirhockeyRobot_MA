@@ -66,7 +66,7 @@ void setup() {
   rightBoundary= 1191;
   leftBoundary= 93;
 
-  goal = (rightBoundary-topBoundary)/2;
+  goal = ((rightBoundary-leftBoundary)/2)+leftBoundary;
 
   interceptionLine= 600;
 
@@ -227,7 +227,7 @@ ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
 void getShootDirection(){
 //println(interceptionPoint[0]);
 //println(goal);
-shootingAngle = 90-degrees((atan((interceptionPoint[0]-<leftBoundary+goal-leftBoundary)/(interceptionLine-topBoundary))));
+shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal-2*leftBoundary)/(interceptionLine-topBoundary))));
 ricochet[0]=leftBoundary;
 ricochet[1]=(interceptionPoint[0]-leftBoundary)/tan(shootingAngle);
 ellipse(ricochet[0],ricochet[1],25,25);
