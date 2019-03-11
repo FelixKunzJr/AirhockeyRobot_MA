@@ -237,11 +237,11 @@ line(interceptionPoint[0],interceptionPoint[1],ricochet[0],ricochet[1]);
 line(ricochet[0],ricochet[1],goal,topBoundary);
 //println(shootingAngle);
 
-float a = degrees(atan((interceptionPoint[0]-leftBoundary)/(bottomBoundary-ricochet[1])));
-//println(a);
+float a = degrees(atan((interceptionLine-ricochet[1])/(interceptionPoint[0]-leftBoundary)));
+println(a);
 
-float b = degrees(atan((goal-leftBoundary)/(ricochet[1]-topBoundary)));
-//println(b);
+float b = degrees(atan((ricochet[1]-topBoundary)/(goal-leftBoundary)));
+println(b);
 //println(shootingAngle+b);
 
 }
