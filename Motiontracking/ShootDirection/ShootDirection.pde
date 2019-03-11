@@ -162,7 +162,7 @@ void getInterceptionPoint() {
 
       coordinates[0]= coordinates[0]+ avg[0];
       coordinates[1]= coordinates[1]+ avg[1];
-      println(avg[0]);
+      //println(avg[0]);
 
       i++;
 
@@ -213,6 +213,7 @@ ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
 
   interceptionPoint[0] = (((interceptionLine-reflection[1])/(v3.y))*v3.x)+reflection[0];
   interceptionPoint[1] = interceptionLine;
+  //println(interceptionPoint[0]);
 
 
 
@@ -226,7 +227,7 @@ ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
 void getShootDirection(){
 //println(interceptionPoint[0]);
 //println(goal);
-shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal-(2*leftBoundary))/(interceptionLine-topBoundary))));
+shootingAngle = 90-degrees((atan((interceptionPoint[0]-<leftBoundary+goal-leftBoundary)/(interceptionLine-topBoundary))));
 ricochet[0]=leftBoundary;
 ricochet[1]=(interceptionPoint[0]-leftBoundary)/tan(shootingAngle);
 ellipse(ricochet[0],ricochet[1],25,25);
@@ -235,11 +236,11 @@ line(ricochet[0],ricochet[1],goal,topBoundary);
 println(shootingAngle);
 
 float a = degrees(atan((interceptionPoint[0]-leftBoundary)/(bottomBoundary-ricochet[1])));
-println(a);
+//println(a);
 
 float b = degrees(atan((goal-leftBoundary)/(ricochet[1]-topBoundary)));
-println(b);
-println(shootingAngle+b);
+//println(b);
+//println(shootingAngle+b);
 
 }
 
