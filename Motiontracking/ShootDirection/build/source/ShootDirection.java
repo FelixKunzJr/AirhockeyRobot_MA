@@ -248,8 +248,8 @@ public void getShootDirection(){
 //println(goal);
 shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal-2*leftBoundary)/(interceptionLine-topBoundary))));
 ricochet[0]=leftBoundary;
-ricochet[1]=interceptionLine-((interceptionPoint[0]-leftBoundary)*tan(shootingAngle));
-ricochet[1]=degrees(tan(25.3f));
+ricochet[1]=interceptionLine-((interceptionPoint[0]-leftBoundary)*tan(radians(shootingAngle)));
+
 println(ricochet[1]);
 ellipse(ricochet[0],ricochet[1],25,25);
 line(interceptionPoint[0],interceptionPoint[1],ricochet[0],ricochet[1]);
