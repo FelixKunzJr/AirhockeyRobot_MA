@@ -19,8 +19,8 @@ public class ShootingForce extends PApplet {
 
 /*
 
-Ziel: Es wird die richtung des des vektores ermittelt, um das tor zu treffen.
-https://physik-kn.jimdo.com/startseite/mathe-für-biologen/zentrale-stöße-und-impulserhaltung/
+ Ziel: Es wird die richtung des des vektores ermittelt, um das tor zu treffen.
+ https://physik-kn.jimdo.com/startseite/mathe-für-biologen/zentrale-stöße-und-impulserhaltung/
  */
 
 PVector v1, v2, v3, v4, v5, v6;
@@ -91,8 +91,6 @@ public void setup() {
   interceptionLine= 600;
 
   speed = 50;
-
-
 }
 
 public void movieEvent(Movie video) {
@@ -103,21 +101,20 @@ public void draw() {
   // video.();
   image(video, 0, 0, width, height);
 
-line(leftBoundary,topBoundary,rightBoundary,topBoundary); //draw top boarder
-line(leftBoundary,bottomBoundary,rightBoundary,bottomBoundary); //draw bottom boarder
-line(leftBoundary,topBoundary,leftBoundary,bottomBoundary); //draw left boarder
-line(rightBoundary,topBoundary,rightBoundary,bottomBoundary); //draw right boundary
-ellipse(goal,topBoundary,25,25);
+  line(leftBoundary, topBoundary, rightBoundary, topBoundary); //draw top boarder
+  line(leftBoundary, bottomBoundary, rightBoundary, bottomBoundary); //draw bottom boarder
+  line(leftBoundary, topBoundary, leftBoundary, bottomBoundary); //draw left boarder
+  line(rightBoundary, topBoundary, rightBoundary, bottomBoundary); //draw right boundary
+  ellipse(goal, topBoundary, 25, 25);
   getCoordinates();
   getInterceptionPoint();
   getShootDirection();
 
 
-if(avg[1]<10+interceptionLine&&avg[1]>interceptionLine-10){
-println("INTERCEPT!!!!");
-println(millis()-orig[2]);
-
-}
+  if (avg[1]<10+interceptionLine&&avg[1]>interceptionLine-10) {
+    println("INTERCEPT!!!!");
+    println(millis()-orig[2]);
+  }
 
   /*  print(avg[0]);
    print(" ");
@@ -201,8 +198,8 @@ public void getInterceptionPoint() {
 
   //v5 = new PVector(avg[0], avg[1], millis());
   v1 = new PVector(avg5[0], avg5[1], avg5[2]);
-//println(orig[0]);
-ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
+  //println(orig[0]);
+  ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
   PVector v2 = PVector.mult(v1, 100);
   line(orig[0], orig[1], orig[0]+v2.x, orig[1]+v2.y );
   line(rightBoundary, bottomBoundary, rightBoundary, topBoundary);
@@ -246,54 +243,53 @@ ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
   line(interceptionPoint[0], interceptionPoint[1]+10, interceptionPoint[0], interceptionPoint[1]-10);
 }
 
-public void getShootDirection(){
-//println(interceptionPoint[0]);
-//println(goal);
-shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal-2*leftBoundary)/(interceptionLine-topBoundary))));
-ricochet[0]=leftBoundary;
-ricochet[1]=interceptionLine-((interceptionPoint[0]-leftBoundary)*tan(radians(shootingAngle)));
+public void getShootDirection() {
+  //println(interceptionPoint[0]);
+  //println(goal);
+  shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal-2*leftBoundary)/(interceptionLine-topBoundary))));
+  ricochet[0]=leftBoundary;
+  ricochet[1]=interceptionLine-((interceptionPoint[0]-leftBoundary)*tan(radians(shootingAngle)));
 
-println(ricochet[1]);
-ellipse(ricochet[0],ricochet[1],25,25);
-line(interceptionPoint[0],interceptionPoint[1],ricochet[0],ricochet[1]);
-line(ricochet[0],ricochet[1],goal,topBoundary);
-//println(shootingAngle);
+  println(ricochet[1]);
+  ellipse(ricochet[0], ricochet[1], 25, 25);
+  line(interceptionPoint[0], interceptionPoint[1], ricochet[0], ricochet[1]);
+  line(ricochet[0], ricochet[1], goal, topBoundary);
+  //println(shootingAngle);
 
-float a = degrees(atan((interceptionLine-ricochet[1])/(interceptionPoint[0]-leftBoundary)));
-
-
-float b = degrees(atan((ricochet[1]-topBoundary)/(goal-leftBoundary)));
+  float a = degrees(atan((interceptionLine-ricochet[1])/(interceptionPoint[0]-leftBoundary)));
 
 
-stroke(0,255,255);
-strokeWeight(10);
-line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]-v3.x, interceptionPoint[1]-v3.y );
-stroke(0,0,0);
-strokeWeight(5);
+  float b = degrees(atan((ricochet[1]-topBoundary)/(goal-leftBoundary)));
+
+
+  stroke(0, 255, 255);
+  strokeWeight(10);
+  line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]-v3.x, interceptionPoint[1]-v3.y );
+  stroke(0, 0, 0);
+  strokeWeight(5);
 
 
 
-//println(shootingAngle+b);
-v5 = new PVector((-cos(radians(shootingAngle))), -sin(radians(shootingAngle)));
-v5.mult(speed);
+  //println(shootingAngle+b);
+  v5 = new PVector((-cos(radians(shootingAngle))), -sin(radians(shootingAngle)));
+  v5.mult(speed);
 
-stroke(255,0,0);
-strokeWeight(10);
-line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]+v5.x, interceptionPoint[1]+v5.y );
-stroke(0,0,0);
-strokeWeight(5);
+  stroke(255, 0, 0);
+  strokeWeight(10);
+  line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]+v5.x, interceptionPoint[1]+v5.y );
+  stroke(0, 0, 0);
+  strokeWeight(5);
 
-PVector v6 = PVector.sub(v5, v3);
-v6.mult(-1);
-print("v6 = ");
-println(v6);
+  PVector v6 = PVector.sub(v5, v3);
+  v6.mult(-1);
+  print("v6 = ");
+  println(v6);
 
-stroke(0,0,255);
-strokeWeight(10);
-line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]+v6.x, interceptionPoint[1]+v6.y );
-stroke(0,0,0);
-strokeWeight(5);
-
+  stroke(0, 0, 255);
+  strokeWeight(10);
+  line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]+v6.x, interceptionPoint[1]+v6.y );
+  stroke(0, 0, 0);
+  strokeWeight(5);
 }
 
 public float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {

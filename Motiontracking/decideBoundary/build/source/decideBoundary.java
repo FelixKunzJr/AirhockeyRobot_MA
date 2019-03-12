@@ -1,3 +1,22 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import processing.video.*; 
+import java.util.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class decideBoundary extends PApplet {
+
 /*
 
  Ziel: Es wird die richtung des des vektores ermittelt, um das tor zu treffen.
@@ -6,13 +25,13 @@
 
 PVector v1, v2, v3, v4, v5, v6;
 
-import processing.video.*;
-import java.util.*;
+
+
 
 //Capture video;
 Movie video;
 
-color trackColor;
+int trackColor;
 float threshold = 50;
 int setAccuracy = 20;
 
@@ -51,8 +70,8 @@ int locY;
 
 
 
-void setup() {
-  size(1284, 720);
+public void setup() {
+  
 
   video = new Movie(this, "bounceSmall.mov");
 
@@ -74,11 +93,11 @@ void setup() {
   speed = 50;
 }
 
-void movieEvent(Movie video) {
+public void movieEvent(Movie video) {
   video.read();
 }
 
-void draw() {
+public void draw() {
   // video.();
   image(video, 0, 0, width, height);
 
@@ -109,7 +128,7 @@ void draw() {
 
 
 
-void getCoordinates() {
+public void getCoordinates() {
 
   count=0;
   locX =0;
@@ -123,7 +142,7 @@ void getCoordinates() {
 
 
 
-      color currentColor = video.pixels[loc];
+      int currentColor = video.pixels[loc];
       float r1 = red(currentColor);
       float g1 = green(currentColor);
       float b1 = blue(currentColor);
@@ -152,7 +171,7 @@ void getCoordinates() {
 }
 
 
-void getVector(){
+public void getVector(){
 if (avg[0]>0) {
   if (i < setAccuracy) {
     //getCoordinates();
@@ -186,11 +205,11 @@ v1 = new PVector(avg5[0], avg5[1], avg5[2]);
 }
 
 
-void decideBoundary(){
+public void decideBoundary(){
 
 
 }
-void getInterceptionPoint() {
+public void getInterceptionPoint() {
 
   //println(orig[0]);
   ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
@@ -210,7 +229,7 @@ void getInterceptionPoint() {
 
 
   fill(255);
-  strokeWeight(4.0);
+  strokeWeight(4.0f);
   stroke(1);
   ellipse(avg[0], avg[1], 24, 24);
   ellipse(reflection[0], reflection[1], 24, 24);
@@ -237,7 +256,7 @@ void getInterceptionPoint() {
   line(interceptionPoint[0], interceptionPoint[1]+10, interceptionPoint[0], interceptionPoint[1]-10);
 }
 
-void getShootDirection() {
+public void getShootDirection() {
   //println(interceptionPoint[0]);
   //println(goal);
   shootingAngle = 90-degrees((atan((interceptionPoint[0]+goal-2*leftBoundary)/(interceptionLine-topBoundary))));
@@ -286,7 +305,17 @@ void getShootDirection() {
   strokeWeight(5);
 }
 
-float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
+public float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
   float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
   return d;
+}
+  public void settings() {  size(1284, 720); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "decideBoundary" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
