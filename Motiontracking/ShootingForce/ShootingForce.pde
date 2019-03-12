@@ -4,7 +4,7 @@ Ziel: Es wird die richtung des des vektores ermittelt, um das tor zu treffen.
 https://physik-kn.jimdo.com/startseite/mathe-für-biologen/zentrale-stöße-und-impulserhaltung/
  */
 
-PVector v1, v2, v3, v4, v5;
+PVector v1, v2, v3, v4, v5, v6;
 
 import processing.video.*;
 import java.util.*;
@@ -37,6 +37,7 @@ float[] shootingDirection = new float[2];
 float[] ricochet = new float[2];
 float shootingAngle;
 float ETA;
+float speed;
 
 
 int count = 0;
@@ -69,6 +70,8 @@ void setup() {
   goal = ((rightBoundary-leftBoundary)/2)+leftBoundary;
 
   interceptionLine= 600;
+
+  speed = 50;
 
 
 }
@@ -238,11 +241,39 @@ line(ricochet[0],ricochet[1],goal,topBoundary);
 //println(shootingAngle);
 
 float a = degrees(atan((interceptionLine-ricochet[1])/(interceptionPoint[0]-leftBoundary)));
-println(a);
+
 
 float b = degrees(atan((ricochet[1]-topBoundary)/(goal-leftBoundary)));
-println(b);
+
+
+stroke(0,255,255);
+strokeWeight(10);
+line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]-v3.x, interceptionPoint[1]-v3.y );
+stroke(0,0,0);
+strokeWeight(5);
+
+
+
 //println(shootingAngle+b);
+v5 = new PVector((-cos(radians(shootingAngle))), -sin(radians(shootingAngle)));
+v5.mult(speed);
+
+stroke(255,0,0);
+strokeWeight(10);
+line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]+v5.x, interceptionPoint[1]+v5.y );
+stroke(0,0,0);
+strokeWeight(5);
+
+PVector v6 = PVector.sub(v5, v3);
+v6.mult(-1);
+print("v6 = ");
+println(v6);
+
+stroke(0,0,255);
+strokeWeight(10);
+line(interceptionPoint[0], interceptionPoint[1], interceptionPoint[0]+v6.x, interceptionPoint[1]+v6.y );
+stroke(0,0,0);
+strokeWeight(5);
 
 }
 
