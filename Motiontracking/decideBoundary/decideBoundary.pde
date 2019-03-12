@@ -1,7 +1,6 @@
 /*
 
- Ziel: Es wird die richtung des des vektores ermittelt, um das tor zu treffen.
- https://physik-kn.jimdo.com/startseite/mathe-für-biologen/zentrale-stöße-und-impulserhaltung/
+ Triff die entscheidung, ob der ball die linke oder rechte wand berühren wird. es kann auch sein, dass der ball keine wand berührt!
  */
 
 PVector v1, v2, v3, v4, v5, v6;
