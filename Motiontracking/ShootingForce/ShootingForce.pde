@@ -14,7 +14,7 @@ Movie video;
 
 color trackColor;
 float threshold = 50;
-int setAccuracy = 20;
+int setAccuracy = 10;
 
 float topBoundary;
 float bottomBoundary;

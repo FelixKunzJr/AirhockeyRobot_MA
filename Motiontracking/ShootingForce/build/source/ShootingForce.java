@@ -33,7 +33,7 @@ Movie video;
 
 int trackColor;
 float threshold = 50;
-int setAccuracy = 20;
+int setAccuracy = 10;
 
 float topBoundary;
 float bottomBoundary;
@@ -106,7 +106,10 @@ public void draw() {
   line(leftBoundary, topBoundary, leftBoundary, bottomBoundary); //draw left boarder
   line(rightBoundary, topBoundary, rightBoundary, bottomBoundary); //draw right boundary
   ellipse(goal, topBoundary, 25, 25);
+
   getCoordinates();
+  getVector();
+  decideBoundary();
   getInterceptionPoint();
   getShootDirection();
 
@@ -167,37 +170,47 @@ public void getCoordinates() {
   }
 }
 
-public void getInterceptionPoint() {
-  if (avg[0]>0) {
-    if (i < setAccuracy) {
-      //getCoordinates();
-      if (i < 1) {
-        orig[0]=  avg[0];
-        orig[1]=  avg[1];
-        orig[2]= millis();
-        println(orig[2]);
-      }
 
-
-      coordinates[0]= coordinates[0]+ avg[0];
-      coordinates[1]= coordinates[1]+ avg[1];
-      //println(avg[0]);
-
-      i++;
-
-      avg5[0] = (avg[0]-orig[0])/(i-1);
-      avg5[1]= (avg[1]-orig[1])/(i-1);
-      avg5[2]= ((millis()-orig[2]))/(i);      //Muss mit 15 multipliziert werden... gott weis warum. PRÜFEN!!
+public void getVector(){
+if (avg[0]>0) {
+  if (i < setAccuracy) {
+    //getCoordinates();
+    if (i < 1) {
+      orig[0]=  avg[0];
+      orig[1]=  avg[1];
+      orig[2]= millis();
+      println(orig[2]);
     }
+
+
+    coordinates[0]= coordinates[0]+ avg[0];
+    coordinates[1]= coordinates[1]+ avg[1];
+    //println(avg[0]);
+
+    i++;
+
+    avg5[0] = (avg[0]-orig[0])/(i-1);
+    avg5[1]= (avg[1]-orig[1])/(i-1);
+    avg5[2]= ((millis()-orig[2]))/(i);      //Muss mit 15 multipliziert werden... gott weis warum. PRÜFEN!!
   }
+}
 
 
 
 
-  ellipse(coordinates[0], coordinates[1], 250, 250);
+ellipse(coordinates[0], coordinates[1], 250, 250);
 
-  //v5 = new PVector(avg[0], avg[1], millis());
-  v1 = new PVector(avg5[0], avg5[1], avg5[2]);
+//v5 = new PVector(avg[0], avg[1], millis());
+v1 = new PVector(avg5[0], avg5[1], avg5[2]);
+}
+
+
+public void decideBoundary(){
+
+
+}
+public void getInterceptionPoint() {
+
   //println(orig[0]);
   ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
   PVector v2 = PVector.mult(v1, 100);
