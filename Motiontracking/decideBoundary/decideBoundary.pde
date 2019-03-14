@@ -29,6 +29,7 @@ float interceptionLine;
 float[] orig  = new float[3];
 float[] avg5  = new float[3];
 float[] avg  = new float[3];
+float hit;            //Intersection of v1 with interceptionLine
 float[] reflection = new float[3];
 float[] coordinates  = new float[2];
 float[] interceptionPoint = new float[3];
@@ -37,6 +38,7 @@ float[] ricochet = new float[2];
 float shootingAngle;
 float ETA;
 float speed;
+
 
 
 int count = 0;
@@ -186,6 +188,25 @@ v1 = new PVector(avg5[0], avg5[1], avg5[2]);
 
 
 void decideBoundary(){
+
+hit  = ((-(orig[1]-interceptionLine)/v1.y)*v1.x)+orig[0];
+print("hit: ");
+println(hit);
+
+
+line(orig[0],orig[1],hit,interceptionLine);
+
+
+if(hit > rightBoundary){
+  //rechte bande
+  println("rechte bande");
+}else if(hit < leftBoundary){
+  //linke bande
+  println("linke bande");
+}else{
+  //direkter schuss
+  println("direkter schuss");
+}
 
 
 }

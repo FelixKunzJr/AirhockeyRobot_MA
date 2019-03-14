@@ -15,12 +15,11 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class decideBoundary extends PApplet {
+public class DecideBoundary extends PApplet {
 
 /*
 
- Ziel: Es wird die richtung des des vektores ermittelt, um das tor zu treffen.
- https://physik-kn.jimdo.com/startseite/mathe-für-biologen/zentrale-stöße-und-impulserhaltung/
+ Triff die entscheidung, ob der ball die linke oder rechte wand berühren wird. es kann auch sein, dass der ball keine wand berührt!
  */
 
 PVector v1, v2, v3, v4, v5, v6;
@@ -49,6 +48,7 @@ float interceptionLine;
 float[] orig  = new float[3];
 float[] avg5  = new float[3];
 float[] avg  = new float[3];
+float hit;            //Intersection of v1 with interceptionLine
 float[] reflection = new float[3];
 float[] coordinates  = new float[2];
 float[] interceptionPoint = new float[3];
@@ -57,6 +57,7 @@ float[] ricochet = new float[2];
 float shootingAngle;
 float ETA;
 float speed;
+
 
 
 int count = 0;
@@ -207,6 +208,25 @@ v1 = new PVector(avg5[0], avg5[1], avg5[2]);
 
 public void decideBoundary(){
 
+hit  = ((-(orig[1]-interceptionLine)/v1.y)*v1.x)+orig[0];
+print("hit: ");
+println(hit);
+
+
+line(orig[0],orig[1],hit,interceptionLine);
+
+
+if(hit > rightBoundary){
+  //rechte bande
+  println("rechte bande");
+}else if(hit < leftBoundary){
+  //linke bande
+  println("linke bande");
+}else{
+  //direkter schuss
+  println("direkter schuss");
+}
+
 
 }
 public void getInterceptionPoint() {
@@ -311,7 +331,7 @@ public float distSq(float x1, float y1, float z1, float x2, float y2, float z2) 
 }
   public void settings() {  size(1284, 720); }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "decideBoundary" };
+    String[] appletArgs = new String[] { "DecideBoundary" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
