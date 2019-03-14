@@ -1,7 +1,10 @@
 /*
 
  Triff die entscheidung, ob der ball die linke oder rechte wand berühren wird. es kann auch sein, dass der ball keine wand berührt!
- */
+
+ leftBoundary and noBoundary have not been tested!!!
+
+*/
 
 PVector v1, v2, v3, v4, v5, v6;
 
@@ -30,6 +33,7 @@ float[] orig  = new float[3];
 float[] avg5  = new float[3];
 float[] avg  = new float[3];
 float hit;            //Intersection of v1 with interceptionLine
+float mode;           // Mode 1: rightBoundary , Mode 2: leftBoundary, Mode 3: no boundary
 float[] reflection = new float[3];
 float[] coordinates  = new float[2];
 float[] interceptionPoint = new float[3];
@@ -154,8 +158,9 @@ void getCoordinates() {
 
 
 void getVector(){
-if (avg[0]>0) {
-  if (i < setAccuracy) {
+
+  if (avg[0]>0) {
+      if (i < setAccuracy) {
     //getCoordinates();
     if (i < 1) {
       orig[0]=  avg[0];
@@ -173,56 +178,75 @@ if (avg[0]>0) {
 
     avg5[0] = (avg[0]-orig[0])/(i-1);
     avg5[1]= (avg[1]-orig[1])/(i-1);
-    avg5[2]= ((millis()-orig[2]))/(i);      //Muss mit 15 multipliziert werden... gott weis warum. PRÜFEN!!
+    avg5[2]= ((millis()-orig[2]))/(i);
+    }
   }
-}
 
 
 
 
-ellipse(coordinates[0], coordinates[1], 250, 250);
+  ellipse(coordinates[0], coordinates[1], 250, 250);
 
-//v5 = new PVector(avg[0], avg[1], millis());
-v1 = new PVector(avg5[0], avg5[1], avg5[2]);
+  //v5 = new PVector(avg[0], avg[1], millis());
+  v1 = new PVector(avg5[0], avg5[1], avg5[2]);
 }
 
 
 void decideBoundary(){
 
-hit  = ((-(orig[1]-interceptionLine)/v1.y)*v1.x)+orig[0];
-print("hit: ");
-println(hit);
+  hit  = ((-(orig[1]-interceptionLine)/v1.y)*v1.x)+orig[0];
+  print("hit: ");
+  println(hit);
 
 
-line(orig[0],orig[1],hit,interceptionLine);
+  line(orig[0],orig[1],hit,interceptionLine);
 
 
-if(hit > rightBoundary){
+  if(hit > rightBoundary){
   //rechte bande
-  println("rechte bande");
-}else if(hit < leftBoundary){
+    println("rechte bande");
+    mode = 1;
+  }else if(hit < leftBoundary){
   //linke bande
-  println("linke bande");
-}else{
+    println("linke bande");
+    mode = 2;
+  }else{
   //direkter schuss
-  println("direkter schuss");
-}
+    println("direkter schuss");
+    mode = 3;
+
+
+
+  }
 
 
 }
+
 void getInterceptionPoint() {
 
   //println(orig[0]);
-  ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
-  PVector v2 = PVector.mult(v1, 100);
-  line(orig[0], orig[1], orig[0]+v2.x, orig[1]+v2.y );
-  line(rightBoundary, bottomBoundary, rightBoundary, topBoundary);
-  line(leftBoundary, interceptionLine, rightBoundary, interceptionLine);
+
+  if(mode == 1){
+    ETA=((rightBoundary-orig[0])/(v1.x))*avg5[2];
+    PVector v2 = PVector.mult(v1, 100);
+    line(orig[0], orig[1], orig[0]+v2.x, orig[1]+v2.y );
+    line(leftBoundary, interceptionLine, rightBoundary, interceptionLine);
 
 
-  reflection[0]= rightBoundary;
-  reflection[1]= (((rightBoundary-orig[0])/(v1.x))*v1.y)+orig[1];
+    reflection[0]= rightBoundary;
+    reflection[1]= (((rightBoundary-orig[0])/(v1.x))*v1.y)+orig[1];
+  }
 
+  if(mode == 2){                                                // UNGETESTET!!!!!
+    ETA=((leftBoundary-orig[0])/(v1.x))*avg5[2];
+    PVector v2 = PVector.mult(v1, 100);
+    line(orig[0], orig[1], orig[0]+v2.x, orig[1]+v2.y );
+    line(leftBoundary, interceptionLine, rightBoundary, interceptionLine);
+
+
+    reflection[0]= leftBoundary;
+    reflection[1]= (((-leftBoundary+orig[0])/(v1.x))*v1.y)+orig[1];
+  }
 
 
   ellipse(reflection[0], reflection[1], 24, 24);
@@ -238,6 +262,11 @@ void getInterceptionPoint() {
   v3 = new PVector((-1*(v1.x)), v1.y);
   ETA=ETA+((interceptionLine-reflection[1])/(v3.y))*avg5[2];
   //println(ETA);
+
+  if(mode == 3){
+
+    v3 = v1;
+  }
 
 
   //println(v3);
