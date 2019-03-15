@@ -15,8 +15,10 @@ import java.util.*;
 Movie video;
 
 color trackColor;
-float threshold = 50;
-int setAccuracy = 20;
+int threshold = 50;
+int boundaryThreshold = 10;
+int accuracy = 300;
+boolean sumVector = true;
 
 float topBoundary;
 float bottomBoundary;
@@ -156,11 +158,10 @@ void getCoordinates() {
   }
 }
 
-
 void getVector(){
 
   if (avg[0]>0) {
-      if (i < setAccuracy) {
+      if (sumVector) {
     //getCoordinates();
     if (i < 1) {
       orig[0]=  avg[0];
@@ -168,6 +169,8 @@ void getVector(){
       orig[2]= millis();
       println(orig[2]);
     }
+
+
 
 
     coordinates[0]= coordinates[0]+ avg[0];
@@ -179,6 +182,11 @@ void getVector(){
     avg5[0] = (avg[0]-orig[0])/(i-1);
     avg5[1]= (avg[1]-orig[1])/(i-1);
     avg5[2]= ((millis()-orig[2]))/(i);
+
+    if((rightBoundary-avg[0])<boundaryThreshold || avg[0]-leftBoundary<boundaryThreshold){
+      sumVector=false;
+
+    }
     }
   }
 
@@ -190,7 +198,6 @@ void getVector(){
   //v5 = new PVector(avg[0], avg[1], millis());
   v1 = new PVector(avg5[0], avg5[1], avg5[2]);
 }
-
 
 void decideBoundary(){
 

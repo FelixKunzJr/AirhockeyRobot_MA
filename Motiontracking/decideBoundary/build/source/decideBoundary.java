@@ -20,7 +20,10 @@ public class DecideBoundary extends PApplet {
 /*
 
  Triff die entscheidung, ob der ball die linke oder rechte wand berühren wird. es kann auch sein, dass der ball keine wand berührt!
- */
+
+ leftBoundary and noBoundary have not been tested!!!
+
+*/
 
 PVector v1, v2, v3, v4, v5, v6;
 
@@ -31,8 +34,10 @@ PVector v1, v2, v3, v4, v5, v6;
 Movie video;
 
 int trackColor;
-float threshold = 50;
-int setAccuracy = 20;
+int threshold = 50;
+int boundaryThreshold = 10;
+int accuracy = 300;
+boolean sumVector = true;
 
 float topBoundary;
 float bottomBoundary;
@@ -172,11 +177,10 @@ public void getCoordinates() {
   }
 }
 
-
 public void getVector(){
 
   if (avg[0]>0) {
-      if (i < setAccuracy) {
+      if (sumVector) {
     //getCoordinates();
     if (i < 1) {
       orig[0]=  avg[0];
@@ -184,6 +188,8 @@ public void getVector(){
       orig[2]= millis();
       println(orig[2]);
     }
+
+
 
 
     coordinates[0]= coordinates[0]+ avg[0];
@@ -195,6 +201,11 @@ public void getVector(){
     avg5[0] = (avg[0]-orig[0])/(i-1);
     avg5[1]= (avg[1]-orig[1])/(i-1);
     avg5[2]= ((millis()-orig[2]))/(i);
+
+    if((rightBoundary-avg[0])<boundaryThreshold || avg[0]-leftBoundary<boundaryThreshold){
+      sumVector=false;
+
+    }
     }
   }
 
@@ -206,7 +217,6 @@ public void getVector(){
   //v5 = new PVector(avg[0], avg[1], millis());
   v1 = new PVector(avg5[0], avg5[1], avg5[2]);
 }
-
 
 public void decideBoundary(){
 
@@ -253,7 +263,7 @@ public void getInterceptionPoint() {
     reflection[1]= (((rightBoundary-orig[0])/(v1.x))*v1.y)+orig[1];
   }
 
-  if(mode == 2){
+  if(mode == 2){                                                // UNGETESTET!!!!!
     ETA=((leftBoundary-orig[0])/(v1.x))*avg5[2];
     PVector v2 = PVector.mult(v1, 100);
     line(orig[0], orig[1], orig[0]+v2.x, orig[1]+v2.y );
