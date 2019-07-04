@@ -4,6 +4,7 @@ Serial port;
 String portname = "COM6";
 int baudrate = 9600;
 int value = 0;
+String val;
 
 void setup(){
 
@@ -14,6 +15,13 @@ println(port);
 
 
 void draw(){
+  if ( port.available() > 0)
+  {  // If data is available,
+  val = port.readStringUntil('\n');         // read it and store it in val
+  }
+println(val); //print it out in the console
+
+
 
   if(keyPressed) {
    if (key == '0') {
@@ -34,8 +42,11 @@ void draw(){
    if (key == '5') {
      port.write (5);
    }
- } 
- 
+
+
+
+ }
+
 
 
 }
