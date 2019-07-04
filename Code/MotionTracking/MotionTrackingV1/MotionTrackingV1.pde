@@ -74,6 +74,12 @@ void setup() {
   rightBoundary= 1191;
   leftBoundary= 93;
 
+  line(leftBoundary, topBoundary, rightBoundary, topBoundary); //draw top boarder
+  line(leftBoundary, bottomBoundary, rightBoundary, bottomBoundary); //draw bottom boarder
+  line(leftBoundary, topBoundary, leftBoundary, bottomBoundary); //draw left boarder
+  line(rightBoundary, topBoundary, rightBoundary, bottomBoundary); //draw right boundary
+  ellipse(goal, topBoundary, 25, 25);
+
   goal = ((rightBoundary-leftBoundary)/2)+leftBoundary;
 
   interceptionLine= 600;
@@ -89,11 +95,7 @@ void draw() {
   // video.();
   image(video, 0, 0, width, height);
 
-  line(leftBoundary, topBoundary, rightBoundary, topBoundary); //draw top boarder
-  line(leftBoundary, bottomBoundary, rightBoundary, bottomBoundary); //draw bottom boarder
-  line(leftBoundary, topBoundary, leftBoundary, bottomBoundary); //draw left boarder
-  line(rightBoundary, topBoundary, rightBoundary, bottomBoundary); //draw right boundary
-  ellipse(goal, topBoundary, 25, 25);
+
 
   getCoordinates();
   getVector();

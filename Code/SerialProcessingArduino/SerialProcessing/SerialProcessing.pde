@@ -18,8 +18,9 @@ void draw(){
   if ( port.available() > 0)
   {  // If data is available,
   val = port.readStringUntil('\n');         // read it and store it in val
+  println(val); //print it out in the console
   }
-println(val); //print it out in the console
+
 
 
 
