@@ -26,6 +26,6 @@ if( Serial2.available() )
 
  }
   if(Button1){
-    Serial2.println("Hello, World!2");
+    Serial2.println("Hello, World!");
     }
 }
