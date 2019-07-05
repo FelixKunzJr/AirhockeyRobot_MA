@@ -10,10 +10,12 @@ attachInterrupt(digitalPinToInterrupt(20), interrupt, LOW);
 
 pinMode(LED1,OUTPUT);
 pinMode(LED2,OUTPUT);
+Serial.begin(9600);
 
 }
 
 void loop() {
+
 digitalWrite(LED2,LOW);
 digitalWrite(LED1, HIGH);
 delay(1000);
@@ -26,6 +28,7 @@ void shoot(){
 digitalWrite(solenoid, HIGH);
 delay(500);
 digitalWrite(solenoid, LOW);
+Serial.println("shoot");
 
 }
 
