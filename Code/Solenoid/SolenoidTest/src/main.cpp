@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Wire.h>
 #include <MegaDevBoard.h>
 
 void setup(){
@@ -7,10 +8,10 @@ pinMode(48,OUTPUT);
 }
 
 void loop() {
-//  if(digitalRead(uint8_t)){
+  if(Button1){
 digitalWrite(48, HIGH);
-delay(2000);
+delay(1000);
 digitalWrite(48, LOW);
-delay(500);
-//}
+delay(1000);
+}
   }
