@@ -1,0 +1,104 @@
+
+Toradex Bootloader 1.5 for iMX6 Built Jun 24 2019
+Splash screen is enabled.
+Apalis iMX6D 512MB 1.1B Serial: 10488947
+SPL enabled version.
+Using 16MB of IPU memory and 80MB of GPU memory.
+CPU is running at 792MHz.
+Using eMMC boot partition (size: 32768 sectors).
+Initializing L2 Cache.
+
+Press [SPACE] to enter Bootloader Menu
+
+
+
+BootLoader Configuration:
+
+C) Clear Flash Registry
+X) Enter CommandPrompt Mode
+D) Download image to RAM now
+F) Download image to FLASH now
+L) Launch existing flash resident image now
+
+
+Enter your selection: x
+
+>set ss
+ss.fileaddr:    0x0     (FlashAddress with SplashScreen Data)
+ss.filesize:    0               (Size of SplashScreen Data)
+ss.enable:      1               (Enable SplashScreen)
+ss.dbginfo:     1               (Enable DebugInfos)
+ss.res: 0x0     (Reserved Flags)
+ss.width:       640             (Display Width)
+ss.height:      480             (Display Height)
+ss.bpp: 32              (BitsPerPixel)
+ss.ldds:        16              (LCD Lines Used)
+ss.type:        1               (Display Type (0=Passive, 1=Active))
+ss.color:       1               (0=Mono, 1=Color)
+ss.dual:        0               (0=SinglePanel, 1=DualPanel)
+ss.overlay:     0               (Overlay Enable)
+ss.dpc: 0               (Double Pixel Clock)
+ss.pcp: 0               (Pixel Clock Polarity)
+ss.oep: 1               (Output Enable Polarity)
+ss.hsp: 1               (Horizontal Sync Polarity)
+ss.vsp: 1               (Vertical Sync Polarity)
+ss.bs:  5               (LCD Buffer Strength)
+ss.pclk:        25000000                (PixelClock (in Hz))
+ss.hsw: 96              (Horizontal Sync Width)
+ss.vsw: 2               (Vertical Sync Width)
+ss.blw: 48              (Begin of Line Width)
+ss.elw: 16              (End of Line Width)
+ss.bfw: 31              (Begin of Frame Width)
+ss.efw: 11              (End of Frame Width)
+ss.acb: 0               (AC Bias Frequency)
+ss.disp_gpio:   0               (Display On/Off SO-DIMM/MXM3 pin (0 means no pin used for this purpose))
+ss.bl_gpio:     0               (BackLight On/Off SO-DIMM/MXM3 pin (0 means no pin used for this purpose))
+ss.dispondelay: 0               (Display On Delay)
+ss.disp_pol:    1               (Display On/Off polarity)
+ss.bl_pol:      1               (BackLight On/Off polarity)
+ss.pcddiv:      1               (Enable Pixel Clock PreDivider)
+ss.out: 0               (Output device (Apalis: 0=VGA,1=parallel,2/3/4=LVDS,5=HDMI Colibri: 0=parallel,5=HDMI))
+ss.mode:        0               (Standard mode id (overrides settings))
+ss.detectmode:  0               (0=use parms, 1=match EDID info with standard mode, 2=use EDID preferred mode)
+ss.noOE:        0               (Disables OE/DE signal)
+ss.noVSYNC:     0               (Disables VSYNC signal)
+ss.noHSYNC:     0               (Disables HSYNC signal)
+ss.jeida:       0               (Enables JEIDA mapping for LVDS)
+ss.res: 0x0     (Reserved Flags)
+ss.edidaddr:    0x50    (7-bit i2c address, where the EDID EEPROM is located)
+ss.edidenable:  0               (1=enable reading of EDID data from i2c EEPROM. 0=disable this feature)
+
+set ss.out 5
+Invalid Command
+
+>ss.out 5
+Invalid Command
+
+>set ss.out 5
+
+>save ss
+16 sectors of configuration data stored to boot.
+
+>exit
+
+
+BootLoader Configuration:
+
+C) Clear Flash Registry
+X) Enter CommandPrompt Mode
+D) Download image to RAM now
+F) Download image to FLASH now
+L) Launch existing flash resident image now
+
+
+Enter your selection: l
+System ready!
+Preparing for download...
+Loading compressed image...
+Reading image from sector 40962.
+Extracting 39962452 bytes from compressed image of 25278872 bytes
+.......................
+
+Done.
+Launching image at 10200000.
+
