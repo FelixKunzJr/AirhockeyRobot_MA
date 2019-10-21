@@ -1,12 +1,21 @@
-Output: NC Drill Files
-Type  : NC Drill
-From  : Project [StepperShield.PrjPcb]
-   Generated File[Shield.TXT]
-   Generated File[Shield.LDP]
-   Generated File[Shield.DRR]
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [StepperShield.PrjPcb]
+   Generated File[Shield.GTO]
+   Generated File[Shield.GTP]
+   Generated File[Shield.GTS]
+   Generated File[Shield.GTL]
+   Generated File[Shield.GBL]
+   Generated File[Shield.GBS]
+   Generated File[Shield.GBP]
+   Generated File[Shield.GBO]
+   Generated File[Shield.GKO]
+   Generated File[Shield.RUL]
+   Generated File[Shield.EXTREP]
+   Generated File[Shield.REP]
 
 
-Files Generated   : 3
+Files Generated   : 12
 Documents Printed : 0
 
-Finished Output Generation At 18:57:31 On 19.10.2019
+Finished Output Generation At 19:59:45 On 21.10.2019
