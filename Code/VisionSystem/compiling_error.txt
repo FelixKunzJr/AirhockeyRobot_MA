@@ -1,0 +1,4 @@
+/Users/fixi/Nextcloud/MA_AirhockeyRobot/AirhockeyRobot_MA/VisionSystem/AHR2_34.cpp:36:10: fatal error: 'opencv2\opencv.hpp' file not found
+#include <opencv2\opencv.hpp>
+         ^~~~~~~~~~~~~~~~~~~~
+1 error generated.

@@ -1,7 +1,6 @@
 ﻿// JJRobots Air Hockey Robot Evo project
-// Computer Vision for PS3 EYE Camera (using OpenCV)
 // Author: Jose Julio (JJROBOTS)
-//rewritten by Felix Kunz
+//Rewritten by Felix Kunz
 
 // This code needs OpenCV libraries (2.4.13)
 
@@ -535,7 +534,7 @@ bool openComPort(wchar_t* portSpecifier)
 	wprintf(L"Opening COM PORT: %s",portSpecifier);
 	printf("\n");
 
-	serialPort = CreateFile(portSpecifier,GENERIC_READ|GENERIC_WRITE,0,NULL,OPEN_EXISTING,0,NULL);
+	serialPort = CreateFileW(portSpecifier,GENERIC_READ|GENERIC_WRITE,0,NULL,OPEN_EXISTING,0,NULL);
 
 	if (serialPort == INVALID_HANDLE_VALUE)
 	{

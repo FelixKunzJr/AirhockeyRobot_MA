@@ -1,4 +1,4 @@
-// JJROBOTS AHR AIR HOCKEY ROBOT EVO PROJECT
+﻿// JJROBOTS AHR AIR HOCKEY ROBOT EVO PROJECT
 
 // USER CONFIGURATIONS HERE
 // ROBOT DIMENSIONS, MAX SPEED, MAX ACCELERATION, CALIBRATION...
@@ -23,8 +23,8 @@
 
 // This is the center of the table. All units in milimeters
 // This are the dimensions of the official air hockey table Exploter from Buffalo
-#define TABLE_LENGTH 895
-#define TABLE_WIDTH 435
+#define TABLE_LENGTH 1500
+#define TABLE_WIDTH 735
 #define ROBOT_CENTER_X TABLE_WIDTH/2   // Center of robot.
 #define ROBOT_CENTER_Y TABLE_LENGTH/2
 
